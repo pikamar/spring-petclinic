@@ -37,6 +37,8 @@ import org.springframework.samples.petclinic.repository.VisitRepository;
 import org.springframework.samples.petclinic.util.EntityUtils;
 import org.springframework.stereotype.Repository;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  * @author Ken Krebs
  * @author Juergen Hoeller
@@ -82,11 +84,13 @@ public class JdbcPetRepositoryImpl implements PetRepository {
     @Override
     public Pet findById(int id) throws DataAccessException {
         Integer ownerId;
+        final Logger LOGGER = Logger.getLogger(JdbcPetRepositoryImpl.class.getName() );
         try {
             Map<String, Object> params = new HashMap<>();
             params.put("id", id);
             ownerId = this.namedParameterJdbcTemplate.queryForObject("SELECT owner_id FROM pets WHERE id=:id", params, Integer.class);
         } catch (EmptyResultDataAccessException ex) {
+        	LOGGER.log(Level.SEVERE, ex.toString());
         	System.err.println("Exception message: " + ex.getMessage());
             throw new ObjectRetrievalFailureException(Pet.class, id);
         }
