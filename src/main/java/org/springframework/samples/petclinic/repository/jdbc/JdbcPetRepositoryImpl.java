@@ -87,7 +87,7 @@ public class JdbcPetRepositoryImpl implements PetRepository {
             Map<String, Object> params = new HashMap<>();
             params.put("id", id);
             ownerId = this.namedParameterJdbcTemplate.queryForObject("SELECT owner_id FROM pets WHERE id=:id", params, Integer.class);
-        } catch (EmptyResultDataAccessException ex) {
+        } catch (Exception ex) {
             throw new ObjectRetrievalFailureException(Pet.class, id);
         }
         Owner owner = this.ownerRepository.findById(ownerId);
