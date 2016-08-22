@@ -18,9 +18,7 @@ package org.springframework.samples.petclinic.repository.jdbc;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import javax.sql.DataSource;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -47,6 +45,7 @@ import org.springframework.stereotype.Repository;
  * @author Thomas Risberg
  * @author Mark Fisher
  */
+
 @Repository
 public class JdbcPetRepositoryImpl implements PetRepository {
 

@@ -49,6 +49,7 @@ public class JpaOwnerRepositoryImpl implements OwnerRepository {
      * - creating a Ligtweight class (example here: https://community.jboss.org/wiki/LightweightClass)
      * - Turning on lazy-loading and using {@link OpenSessionInViewFilter}
      */
+    @Override
     @SuppressWarnings("unchecked")
     public Collection<Owner> findByLastName(String lastName) {
         // using 'join fetch' because a single query should load both owners and pets
